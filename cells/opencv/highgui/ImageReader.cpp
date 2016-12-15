@@ -1,3 +1,6 @@
+
+#include <boost/regex.hpp>
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -14,7 +17,6 @@
 #define BOOST_FILESYSTEM_VERSION 3
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-#include <boost/regex.hpp>
 
 #include <string>
 using ecto::tendrils;

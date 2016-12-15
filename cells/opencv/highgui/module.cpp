@@ -73,7 +73,8 @@ namespace boost
       if (rows > 0 && cols > 0)
       {
         m.create(rows, cols, type);
-        uchar * data = m.data, *end = m.dataend;
+        uchar* data = m.data;
+	const uchar* end = m.dataend;
         ar & boost::serialization::make_binary_object(data, end - data);
       }
       else

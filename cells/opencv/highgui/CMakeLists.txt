@@ -24,4 +24,4 @@ ectomodule(highgui DESTINATION ecto_opencv
     VideoWriter.cpp
     serialization.cpp
     )
-link_ecto(highgui ${OpenCV_LIBS} ${EXTRA_LIB} ${cv_backports_LIBRARIES})
+link_ecto(highgui ${Boost_LIBRARIES} ${OpenCV_LIBS} ${EXTRA_LIB} ${cv_backports_LIBRARIES})

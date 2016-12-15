@@ -58,6 +58,10 @@ add_library(${bp_opencv_target} SHARED
   highgui_defines.cpp
   )
 
+if(APPLE)
+  set_target_properties(${bp_opencv_target} PROPERTIES SUFFIX ".so")
+endif(APPLE)
+
 set_target_properties(${bp_opencv_target}
   PROPERTIES
   LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION}/
