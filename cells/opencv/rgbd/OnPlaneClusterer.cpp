@@ -34,9 +34,9 @@
  */
 
 #include <ecto/ecto.hpp>
-
 #include <boost/foreach.hpp>
 #include <boost/shared_ptr.hpp>
+
 
 #include <opencv2/imgproc/imgproc.hpp>
 #if CV_MAJOR_VERSION == 3

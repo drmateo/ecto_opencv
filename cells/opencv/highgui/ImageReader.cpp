@@ -1,12 +1,10 @@
-
-#include <boost/regex.hpp>
-
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <iterator>
 #include <string>
 
+#include <boost/regex.hpp>
 #include <boost/interprocess/sync/file_lock.hpp>
 
 #include <ecto/ecto.hpp>
