@@ -71,17 +71,26 @@ namespace ecto_opencv
     void
     operator()(const boost::signals2::connection& c) const
     {
+      std::cout << "hello" << std::endl;
       c.disconnect();
+      cv_backports::startWindowThread();
+      cv::setNumThreads(-1);
+      std::cout << "middle1" << std::endl;
       if (full_screen)
       {
+        std::cout << "middle2" << std::endl;
         cv_backports::namedWindow(name, CV_WINDOW_KEEPRATIO);
+        std::cout << "middle3" << std::endl;
         cv_backports::setWindowProperty(name, CV_WND_PROP_FULLSCREEN, true);
       }
       else if (auto_size)
       {
-        cv_backports::namedWindow(name, CV_WINDOW_KEEPRATIO);
+        std::cout << "middle4" << std::endl;
+        cv_backports::namedWindow(name);
       }
+      std::cout << "middle5" << std::endl;
       cv_backports::imshow(name, image);
+      std::cout << "bye" << std::endl;
     }
     const cv::Mat image;
     std::string name;
@@ -110,7 +119,6 @@ namespace ecto_opencv
     void
     operator()()
     {
-      cv_backports::startWindowThread();
       while (!boost::this_thread::interruption_requested())
       {
         jobs();
@@ -124,6 +132,7 @@ namespace ecto_opencv
     {
       sig_type::extended_slot_type job(s);
       jobs.connect_extended(job);
+      t->join();
     }
 
     bool
@@ -249,7 +258,13 @@ namespace ecto_opencv
         image = show;
       }
 
+
+      int argc;
+      char** argv;
+//      cvInitSystem(argc, argv);
+      std::cout << "algo m'as" << std::endl;
       runner->post_job(ImshowJob(image, window_name_, *full_screen_, auto_size_));
+      std::cout << "quizas" << std::endl;
 
       if (runner->testKey(waitkey_, 'q', true) || runner->testKey(-1, 27, true))
       {
